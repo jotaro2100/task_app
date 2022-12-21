@@ -1,6 +1,8 @@
 class SchedulesController < ApplicationController
+  helper_method :sort_column, :sort_direction
+
   def index
-    @schedules = Schedule.all
+    @schedules = Schedule.all.order(sort_column + ' ' + sort_direction)
   end
 
   def new
@@ -41,4 +43,14 @@ class SchedulesController < ApplicationController
     flash[:notice] = "スケジュールを削除しました"
     redirect_to :schedules
   end
+end
+
+private
+
+def sort_direction
+  %w[asc desc].include?(params[:direction]) ?  params[:direction] : "asc"
+end
+
+def sort_column
+  Schedule.column_names.include?(params[:sort]) ? params[:sort] : "id"
 end

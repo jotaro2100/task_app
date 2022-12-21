@@ -12,11 +12,11 @@
 
   <body>
     <header>
-      <h1>スケジュール管理アプリ</h1>
+      <div class="header">
+        <h1>スケジュール管理アプリ</h1>
+        <p>現在：<%= Date.today.strftime("%Y年%m月%d日") %></p>
+      </div>
     </header>
     <%= yield %>
-    <footer>
-
-    </footer>
   </body>
 </html>

@@ -1,17 +1,17 @@
 <div class="index">
-  <h2>スケジュール一覧</h2>
+  <h2>スケジュール一覧（合計：<%= Schedule.count %>）</h2>
   <% if flash[:notice] %>
     <p class="notice"><%= flash[:notice] %></p>
   <% end %>
   <table>
     <thead>
       <tr>
-        <th>ID</th>
+        <th><%= sortable "id", "ID" %></th>
         <th>タイトル</th>
-        <th>開始日</th>
-        <th>終了日</th>
+        <th><%= sortable "start_date", "開始日" %></th>
+        <th><%= sortable "end_date", "終了日" %></th>
         <th>終日</th>
-        <th>スケジュール更新日時</th>
+        <th><%= sortable "updated_at", "スケジュール更新日時" %></th>
         <th>参照</th>
         <th>編集</th>
         <th>削除</th>
