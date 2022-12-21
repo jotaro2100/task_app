@@ -1,0 +1,32 @@
+<div class="show">
+  <h2>スケジュール詳細</h2>
+  <table>
+    <tbody>
+      <tr>
+        <th>タイトル</th>
+        <td><%= @schedule.title %></td>
+      </tr>
+      <tr>
+        <th>開始日</th>
+        <td><%= @schedule.start_date %></td>
+      </tr>
+      <tr>
+        <th>終了日</th>
+        <td><%= @schedule.end_date %></td>
+      </tr>
+      <tr>
+        <th>終日</th>
+        <% if @schedule.all_day %>
+        <td>○</td>
+        <% else %>
+        <td></td>
+        <% end %>
+      </tr>
+      <tr>
+        <th>メモ</th>
+        <td><%= @schedule.memo %></td>
+      </tr>
+    </tbody>
+  </table>
+    <p><%= link_to "スケジュール一覧に戻る", :schedules %></p>
+</div>
