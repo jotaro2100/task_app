@@ -10,7 +10,7 @@ class SchedulesController < ApplicationController
   end
 
   def create
-    @schedule = Schedule.new(params.require(:schedule).permit(:title, :start_date, :end_date, :all_day, :memo))
+    @schedule = Schedule.new(schedule_params)
     if @schedule.save
       flash[:notice] = "スケジュール#{@schedule.id}を新規登録しました"
       redirect_to :schedules
@@ -29,7 +29,7 @@ class SchedulesController < ApplicationController
 
   def update
     @schedule = Schedule.find(params[:id])
-    if @schedule.update(params.require(:schedule).permit(:title, :start_date, :end_date, :all_day, :memo))
+    if @schedule.update(schedule_params)
       flash[:notice] = "スケジュール#{@schedule.id}を更新しました"
       redirect_to :schedules
     else
@@ -43,14 +43,18 @@ class SchedulesController < ApplicationController
     flash[:notice] = "スケジュールを削除しました"
     redirect_to :schedules
   end
-end
 
-private
+  private
 
-def sort_direction
-  %w[asc desc].include?(params[:direction]) ?  params[:direction] : "asc"
-end
+  def schedule_params
+    params.require(:schedule).permit(:title, :start_date, :end_date, :all_day, :memo)
+  end
 
-def sort_column
-  Schedule.column_names.include?(params[:sort]) ? params[:sort] : "id"
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ?  params[:direction] : "asc"
+  end
+
+  def sort_column
+    Schedule.column_names.include?(params[:sort]) ? params[:sort] : "id"
+  end
 end
