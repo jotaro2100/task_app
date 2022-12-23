@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>TaskApp</title>
+    <title>スケジュール管理</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -11,6 +11,12 @@
   </head>
 
   <body>
+    <header>
+      <div class="header">
+        <h1>スケジュール管理アプリ</h1>
+        <p>現在：<%= Date.today.strftime("%Y年%m月%d日") %></p>
+      </div>
+    </header>
     <%= yield %>
   </body>
 </html>
